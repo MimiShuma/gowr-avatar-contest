@@ -1,8 +1,27 @@
 function App() {
   return (
-    <div>
+    <div style={{
+      minHeight: "100vh",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      gap: "20px",
+      fontFamily: "Arial"
+    }}>
       <h1>GOWR Avatar Contest</h1>
-      <p>Project setup successful.</p>
+
+      <p>
+        Vote for your favorite avatars created by the community.
+      </p>
+
+      <button>
+        Login with Discord
+      </button>
+
+      <button>
+        Login with Google
+      </button>
     </div>
   );
 }
