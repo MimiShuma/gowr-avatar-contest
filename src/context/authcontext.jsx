@@ -30,7 +30,14 @@ export function AuthProvider({ children }) {
     }
 
     async function logout() {
-        await supabase.auth.signOut();
+        const { error } = await supabase.auth.signOut();
+
+        if (error) {
+            console.error(error);
+            return;
+        }
+
+        window.location.href = "/";
     }
 
     return (

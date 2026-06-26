@@ -1,13 +1,14 @@
 import { supabase } from "../lib/supabaseClient";
 
 function Login() {
-    async function loginWithGoogle() {
+    async function login(provider) {
         const { error } = await supabase.auth.signInWithOAuth({
-            provider: "google",
+            provider,
             options: {
                 redirectTo: window.location.origin,
             },
         });
+
 
         if (error) {
             console.error(error);
@@ -19,20 +20,21 @@ function Login() {
             style={{
                 minHeight: "100vh",
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                flexDirection: "column",
                 gap: "20px",
+                fontFamily: "Arial",
             }}
         >
             <h1>Login</h1>
 
-            <button onClick={loginWithGoogle}>
+            <button onClick={() => login("google")}>
                 Continue with Google
             </button>
 
-            <button disabled>
-                Discord (Coming Soon)
+            <button onClick={() => login("discord")}>
+                Continue with Discord
             </button>
         </div>
     );
