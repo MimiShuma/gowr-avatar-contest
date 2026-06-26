@@ -3,8 +3,9 @@ import { useAuth } from "../context/authcontext";
 
 function Home() {
     const navigate = useNavigate();
-    const { user, loading, logout } = useAuth();
 
+
+    const { user, loading } = useAuth();
 
     if (loading) {
         return <h2 style={{ textAlign: "center" }}>Loading...</h2>;
@@ -13,30 +14,30 @@ function Home() {
     return (
         <div
             style={{
-                minHeight: "100vh",
+                minHeight: "calc(100vh - 80px)",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
                 gap: "20px",
                 fontFamily: "Arial",
+                textAlign: "center",
+                padding: "20px",
             }}
         >
-            <h1>GOWR83S</h1>
+            <h1>🦅 GOWR83S</h1>
 
-            <p>Vote for your favorite avatars created by the community.</p>
+            <h2>God of War Realm</h2>
 
-            {!user ? (
-                <>
-                    <button onClick={() => navigate("/login")}>
-                        Continue with Google
-                    </button>
+            <h3>Community Portal</h3>
 
-                    <button onClick={() => navigate("/login")}>
-                        Continue with Discord
-                    </button>
-                </>
-            ) : (
+            <p>
+                Choose your favorite community creations.
+                <br />
+                Sign in with Google or Discord to participate in avatar contests.
+            </p>
+
+            {user ? (
                 <>
                     {user.user_metadata.avatar_url && (
                         <img
@@ -51,23 +52,29 @@ function Home() {
                     )}
 
                     <h2>
-                        Welcome,{" "}
+                        Welcome{" "}
                         {user.user_metadata.full_name ||
                             user.user_metadata.name ||
                             "User"}
-                        !
                     </h2>
 
                     <p>{user.email}</p>
 
-                    <button onClick={() => navigate("/contests")}>
+                    <button
+                        style={{
+                            padding: "12px 30px",
+                            fontSize: "18px",
+                        }}
+                        onClick={() => navigate("/contests")}
+                    >
                         Browse Contests
                     </button>
-
-                    <button onClick={logout}>
-                        Logout
-                    </button>
                 </>
+            ) : (
+                <p>
+                    Click the <strong>LOGIN</strong> button in the navigation bar
+                    to sign in.
+                </p>
             )}
         </div>
     );

@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Layout from "./layout/layout";
+
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Contests from "./pages/contests";
@@ -9,7 +11,7 @@ import Results from "./pages/results";
 import ProtectedRoute from "./components/protectedroute";
 
 function App() {
-  return (<BrowserRouter> <Routes>
+  return (<BrowserRouter> <Layout> <Routes>
     <Route
       path="/"
       element={<Home />}
@@ -48,6 +50,7 @@ function App() {
       }
     />
   </Routes>
+  </Layout>
   </BrowserRouter>
   );
 
